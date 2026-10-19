@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Julius Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Azeret+Mono:wght@500;600;700&family=Chivo:wght@500&family=Chivo+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="top" class="ld">
+<header class="hero" aria-label="Intro">
+  <div class="hero__media">
+    <div class="hero__img" id="heroImg">
+      <img class="mark" src="assets/images/inline_1.png" alt="Julius logo" width="460" height="534">
+    </div>
+    <div class="hero__txt wrap"><span>Graphic designer</span><span>Helping you create</span></div>
+  </div>
+  <dl class="info wrap">
+    <div><dt>Social:</dt><dd><a href="https://www.instagram.com/aman_julius_/" target="_blank" rel="noopener">Instagram</a><a href="https://www.behance.net/gallery/216977593/TEASER-TATVA" target="_blank" rel="noopener">Behance</a><a href="https://www.linkedin.com/in/aman-julius-850676180/" target="_blank" rel="noopener">Linkedin</a></dd></div>
+    <div><dt>Location:</dt><dd><span>Bengaluru, Karnataka</span><span class="clock" data-clock>--:--:--</span></dd></div>
+    <div><dt>Expertise:</dt><dd><span>Graphic designing</span><span>Brand identity</span><span>Video editing</span></dd></div>
+  </dl>
+</header>
+
+<main>
+  <section class="sec about wrap" id="about">
+    <div class="sh"><h2 class="h rv">About</h2><span class="h rv">S01</span></div>
+    <p class="lead rv">As a digital designer, my work bridges creativity and technology to craft compelling and functional digital experiences. With a deep understanding of user-centric design, I specialize in creating visually stunning websites, interactive platforms, and branding assets that not only captivate but also engage audiences.</p>
+    <div class="group">
+      <div class="blobwrap" id="rot" aria-hidden="true">
+        <svg viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <filter id="feather" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="30"/></filter>
+            <mask id="bm" maskUnits="userSpaceOnUse" x="0" y="0" width="1000" height="1000"><g filter="url(#feather)" fill="#fff"><path id="bp"/><path id="bp2"/></g></mask>
+          </defs>
+          <g mask="url(#bm)"><image id="bi" x="0" y="-238" width="1000" height="1792" preserveAspectRatio="xMidYMid slice"/></g>
+        </svg>
+      </div>
+      <div class="stats">
+        <div class="stat rv"><span>Works</span><b>08</b></div>
+        <div class="stat rv"><span>Years</span><b>03</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec wrap" id="experience">
+    <div class="sh"><h2 class="h rv">Experience</h2><span class="h rv">S02</span></div>
+    <ol class="xp" id="xp"></ol>
+  </section>
+
+  <section class="sec wrap" id="works">
+    <div class="sh"><h2 class="h rv">Works</h2><span class="h rv">S03</span></div>
+    <div class="wv" role="group" aria-label="Works view"><button type="button" id="vIndex" aria-pressed="true">Index</button><span>/</span><button type="button" id="vGrid" aria-pressed="false">Grid</button></div>
+    <ol class="idx" id="idx"></ol>
+    <div class="grid" id="grid" hidden></div>
+  </section>
+
+  <section class="sec" id="service">
+    <div class="wrap">
+      <div class="sh"><h2 class="h rv">Service</h2><span class="h rv">S04</span></div>
+      <div class="svc">
+        <p class="rv">I'm a designer and technologist who takes brands from the first sketch to the final screen. I build identity systems and logos, design websites and interfaces in Figma, and bring them to life in code. Alongside that, I plan social media, shoot and edit video, and run campaigns that keep every touchpoint feeling like one brand.</p>
+        <div class="sp"></div>
+        <ul class="ind"><li class="rv">Fashion</li><li class="rv">Architecture</li><li class="rv">Interiors</li><li class="rv">Construction</li><li class="rv">Food</li><li class="rv">Music</li></ul>
+      </div>
+      <div class="spec">
+        <p class="lbl">Specialization</p>
+        <h3 class="big"><span class="rv">Brand Identity</span><span class="rv">Graphic Design</span><span class="rv">Motion Design</span></h3>
+      </div>
+    </div>
+
+    <div class="proc" id="proc">
+      <div class="stage wrap">
+        <p class="lbl">Process</p>
+        <div class="cubewrap"><div class="cube" id="cube" aria-hidden="true">
+          <div class="face" data-pic="orA" data-logo="LOGO1" style="transform:rotateY(0deg) translateZ(calc(var(--d)))"></div>
+          <div class="face" data-pic="orB" data-logo="LOGO2" style="transform:rotateY(90deg) translateZ(calc(var(--d)))"></div>
+          <div class="face" data-pic="orC" data-logo="LOGO3" style="transform:rotateY(180deg) translateZ(calc(var(--d)))"></div>
+          <div class="face face--grow" id="face4" data-pic="orD" data-logo="LOGO3" style="transform:rotateY(270deg) translateZ(calc(var(--d)))"><svg viewBox="0 0 900 900" class="drawsvg" aria-hidden="true"><defs><filter id="inkSh" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity=".4"/></filter>
+<mask id="mInf" maskUnits="userSpaceOnUse"><path class="dr dr1" d="M733.1,652.5 L731.1,678.4 L725.0,703.1 L715.4,725.4 L702.9,744.7 L688.1,760.2 L671.8,771.8 L654.7,779.6 L637.3,783.8 L620.1,784.8 L603.3,782.9 L587.2,778.6 L571.8,772.4 L557.3,764.5 L543.5,755.3 L530.6,745.1 L518.3,734.1 L506.7,722.4 L495.6,710.2 L484.9,697.7 L474.6,685.0 L464.5,672.0 L454.5,659.0 L444.6,645.9 L434.7,632.9 L424.6,620.0 L414.2,607.2 L403.6,594.7 L392.5,582.6 L380.8,570.9 L368.6,559.9 L355.6,549.6 L341.9,540.5 L327.3,532.6 L312.0,526.3 L295.9,522.1 L279.1,520.2 L261.8,521.2 L244.4,525.3 L227.3,533.1 L211.0,544.8 L196.2,560.3 L183.7,579.5 L174.1,601.9 L168.1,626.6 L166.0,652.5 L168.1,678.4 L174.1,703.1 L183.7,725.4 L196.2,744.7 L211.0,760.2 L227.3,771.8 L244.4,779.6 L261.8,783.8 L279.1,784.8 L295.9,782.9 L312.0,778.6 L327.3,772.4 L341.9,764.5 L355.6,755.3 L368.6,745.1 L380.8,734.1 L392.5,722.4 L403.6,710.2 L414.2,697.7 L424.6,685.0 L434.7,672.0 L444.6,659.0 L454.5,645.9 L464.5,632.9 L474.6,620.0 L484.9,607.2 L495.6,594.7 L506.7,582.6 L518.3,570.9 L530.6,559.9 L543.5,549.6 L557.3,540.5 L571.8,532.6 L587.2,526.3 L603.3,522.1 L620.1,520.2 L637.3,521.2 L654.7,525.3 L671.8,533.1 L688.1,544.8 L702.9,560.3 L715.4,579.5 L725.0,601.9 L731.1,626.6 L733.1,652.5" pathLength="1" fill="none" stroke="#fff" stroke-width="71" stroke-linecap="round" stroke-linejoin="round"/></mask>
+<mask id="mC2" maskUnits="userSpaceOnUse"><circle class="dr dr2" cx="438.9" cy="407.7" r="110.2" pathLength="1" fill="none" stroke="#fff" stroke-width="57" transform="rotate(-110 438.9 407.7)"/></mask>
+<mask id="mC1" maskUnits="userSpaceOnUse"><circle class="dr dr3" cx="438.9" cy="188.9" r="67.3" pathLength="1" fill="none" stroke="#fff" stroke-width="45" transform="rotate(-100 438.9 188.9)"/></mask></defs>
+<image id="f4plate" x="0" y="0" width="900" height="900" preserveAspectRatio="xMidYMid slice"/><rect width="900" height="900" fill="#000" opacity=".18"/>
+<image href="assets/images/inline_2.png" x="165.5" y="522.9" width="569" height="260" mask="url(#mInf)" filter="url(#inkSh)"/>
+<image href="assets/images/inline_3.png" x="165.5" y="118.0" width="569" height="405" mask="url(#mC2)" filter="url(#inkSh)"/>
+<image href="assets/images/inline_4.png" x="165.5" y="118.0" width="569" height="405" mask="url(#mC1)" filter="url(#inkSh)"/></svg></div>
+        </div></div>
+        <div class="ruler" id="ruler"><i></i><span>04</span><span>03</span><span>02</span><span>01</span><span>02</span><span>03</span><span>04</span></div>
+        <div class="ptxt" id="ptxt" aria-live="polite">
+          <h3 class="h">Discovery</h3>
+          <p>Every project starts with a conversation. I learn who you are, who you are talking to and what the work has to do, then look at your space, your competitors and the culture around you before I start.</p>
+          <h3 class="h">Direction</h3>
+          <p>I turn what I learn into a clear direction: a moodboard, a type and colour palette, and two or three rough routes. We choose one together, so the look is agreed before any detail work starts.</p>
+          <h3 class="h">Design</h3>
+          <p>This is where it gets made. Logos, posters, social posts, emailers or motion pieces, built in Figma, Photoshop and After Effects. You see work in progress and shape it as we go, so there are no surprises at the end.</p>
+          <h3 class="h">Delivery</h3>
+          <p>I finish with files you can use straight away: print ready artwork, social formats, motion exports and, for identities, a guideline so your team can keep everything consistent long after handover.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="f__in wrap">
+    <p class="f__q">Interested in working with us?</p>
+    <button class="mail" id="mail" type="button" aria-haspopup="dialog" aria-label="Contact Julius, aman.7.julius@gmail.com"><span class="mail__t">aman.7.julius@gmail.com</span><span class="mail__tag" aria-hidden="true">Let's talk</span></button>
+    <div class="logo" id="logo"><h2>Julius</h2></div>
+    <dl class="f__grid">
+      <div><dt>Social:</dt><dd><a href="https://www.instagram.com/aman_julius_/" target="_blank" rel="noopener">Instagram</a><a href="https://www.behance.net/gallery/216977593/TEASER-TATVA" target="_blank" rel="noopener">Behance</a><a href="https://www.linkedin.com/in/aman-julius-850676180/" target="_blank" rel="noopener">Linkedin</a></dd></div>
+      <div><dt>Location:</dt><dd><span>Bengaluru, Karnataka</span><span class="clock" data-clock>--:--:--</span></dd></div>
+        <div><dt>Expertise:</dt><dd><span>Graphic designing</span><span>Brand identity</span><span>Video editing</span></dd></div>
+    </dl>
+  </div>
+</footer>
+
+<div class="pv" id="pv" hidden role="dialog" aria-modal="true" aria-labelledby="pvTitle">
+  <div class="pv__bar wrap"><span id="pvIdx">01 / 08</span><div class="pv__nav"><button type="button" id="pvPrev">Prev</button><button type="button" id="pvNext">Next</button><button type="button" id="pvClose">Close</button></div></div>
+  <div class="pv__scroll" id="pvScroll" data-lenis-prevent>
+    <div class="pv__in">
+      <header class="pv__head wrap"><h2 class="pv__t" id="pvTitle"></h2><p class="pv__sub" id="pvSub"></p></header>
+      <div class="pv__full wrap" id="pvFull"></div>
+      <div class="pv__body wrap"><dl class="pv__meta" id="pvMeta"></dl><div class="pv__text" id="pvText"></div></div>
+      <div class="pv__det wrap" id="pvDetWrap"><p class="lbl">Details</p><div class="pv__crops" id="pvCrops"></div></div>
+      <button type="button" class="pv__more wrap" id="pvMore"><span>Next project</span><b id="pvMoreName"></b></button>
+    </div>
+  </div>
+</div>
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="lb__bar wrap"><span id="lbIdx"></span><button type="button" id="lbClose">Close</button></div>
+  <div class="lb__stage"><img id="lbImg" alt=""></div>
+  <div class="lb__nav wrap"><button type="button" id="lbPrev">Prev</button><span id="lbCap"></span><button type="button" id="lbNext">Next</button></div>
+</div>
+<div class="ct" id="ct" hidden role="dialog" aria-modal="true" aria-labelledby="ctTitle">
+  <div class="ct__in wrap" data-lenis-prevent>
+    <div class="ct__top"><div class="ct__soc"><a href="https://www.instagram.com/aman_julius_/" target="_blank" rel="noopener">Instagram</a><a href="https://www.behance.net/gallery/216977593/TEASER-TATVA" target="_blank" rel="noopener">Behance</a><a href="https://www.linkedin.com/in/aman-julius-850676180/" target="_blank" rel="noopener">Linkedin</a></div><button type="button" class="ct__x" id="ctClose">Close</button></div>
+    <div class="ct__grid">
+      <form class="ct__form" id="ctForm" novalidate onsubmit="return false">
+        <p class="ct__lbl">Contact me</p>
+        <h2 class="ct__h" id="ctTitle">Have a project in mind?</h2>
+        <label class="ct__f"><span>Email</span><input id="cEmail" type="email" autocomplete="email" placeholder="Your email*" required></label>
+        <label class="ct__f"><span>Message</span><textarea id="cMsg" rows="3" placeholder="Your message*" required></textarea></label>
+        <a class="ct__send" id="cSend" href="https://mail.google.com/" target="_blank" rel="noopener">Send a message</a>
+        <p class="ct__note" id="cNote" aria-live="polite"></p>
+      </form>
+      <div class="ct__col"><p class="ct__lbl">Let's talk</p><button type="button" class="ct__link ct__copy" id="cCopy"><span>aman.7.julius@gmail.com</span><em>Copied!</em></button><p class="ct__hint">Click to copy</p></div>
+      <nav class="ct__col" aria-label="Contact panel navigation"><p class="ct__lbl">Navigation</p><a class="ct__link" href="#top" data-go="top">Home</a><a class="ct__link" href="#works" data-go="works">Projects</a><a class="ct__link" href="#service" data-go="service">Service</a></nav>
+    </div>
+  </div>
+</div>
+<div class="pvw" id="pvw" aria-hidden="true"><div class="pic"></div><span class="pvw__n"></span></div>
+<div class="zen" id="zen" hidden role="dialog" aria-modal="true" aria-label="Zen, a balance game">
+  <canvas id="zenC"></canvas>
+  <div class="zen__hud wrap"><span>Zen</span><span id="zenScore">Balance 00</span><span id="zenBest">Best 00</span><button type="button" id="zenX">Close</button></div>
+  <p class="zen__msg" id="zenMsg">Stack the circles on the infinity.<br>Tap, click or press space to drop.</p>
+</div>
+<audio id="backgroundMusic" src="assets/audio/The%20Weeknd%20-%20House%20Of%20Balloons%20(Extended%20Intro).mp3" loop preload="none"></audio>
+<nav class="bar wrap" aria-label="Main">
+  <span>©2026 Julius</span>
+  <div class="bar__r">
+    <button id="musicToggle" class="music" type="button" aria-pressed="false" aria-label="Play background music">Music off</button>
+    <div class="theme" role="group" aria-label="Theme"><button id="tDark" type="button" aria-pressed="false">Dark</button><span>/</span><button id="tLight" type="button" aria-pressed="true">Light</button></div>
+    <div class="links"><a href="#top">Home</a><a href="#about">About</a><a href="#works">Works</a><a href="#service">Service</a><a href="#contact">Contact</a></div>
+  </div>
+</nav>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
