@@ -35,9 +35,22 @@
         <svg viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">
           <defs>
             <filter id="feather" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="30"/></filter>
+            <filter id="portraitVintage" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB">
+              <feColorMatrix type="saturate" values="0"/>
+              <feComponentTransfer result="vintage">
+                <feFuncR type="linear" slope=".70" intercept=".025"/>
+                <feFuncG type="linear" slope=".70" intercept=".025"/>
+                <feFuncB type="linear" slope=".70" intercept=".025"/>
+              </feComponentTransfer>
+              <feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="3" seed="12" stitchTiles="stitch"/>
+              <feColorMatrix type="saturate" values="0"/>
+              <feComponentTransfer><feFuncA type="linear" slope=".32"/></feComponentTransfer>
+              <feBlend in="vintage" mode="soft-light"/>
+              <feComposite in2="SourceGraphic" operator="in"/>
+            </filter>
             <mask id="bm" maskUnits="userSpaceOnUse" x="0" y="0" width="1000" height="1000"><g filter="url(#feather)" fill="#fff"><path id="bp"/><path id="bp2"/></g></mask>
           </defs>
-          <g mask="url(#bm)"><image id="bi" x="0" y="-238" width="1000" height="1792" preserveAspectRatio="xMidYMid slice"/></g>
+          <g mask="url(#bm)"><image id="bi" x="0" y="-238" width="1000" height="1792" preserveAspectRatio="xMidYMid slice" filter="url(#portraitVintage)"/></g>
         </svg>
       </div>
       <div class="stats">
