@@ -7,10 +7,13 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Azeret+Mono:wght@500;600;700&family=Chivo:wght@500&family=Chivo+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Azeret+Mono:wght@500;600;700&family=Chivo:wght@500&family=Chivo+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<noscript><style>.pl{display:none}</style></noscript>
+<div class="pl" id="pl" aria-hidden="true"><span class="pl__l">Julius<br>Portfolio ©2026</span><span class="pl__n" id="plN">000</span><i class="pl__bar" id="plBar"></i></div>
+<div class="grain" aria-hidden="true"></div>
 <div id="top" class="ld">
 <header class="hero" aria-label="Intro">
   <div class="hero__media">
@@ -20,7 +23,7 @@
     <div class="hero__txt wrap"><span>Graphic designer</span><span>Helping you create</span></div>
   </div>
   <dl class="info wrap">
-    <div><dt>Social:</dt><dd><a href="https://www.instagram.com/aman_julius_/" target="_blank" rel="noopener">Instagram</a><a href="https://www.behance.net/gallery/216977593/TEASER-TATVA" target="_blank" rel="noopener">Behance</a><a href="https://www.linkedin.com/in/aman-julius-850676180/" target="_blank" rel="noopener">Linkedin</a></dd></div>
+    <div><dt>Social:</dt><dd><a href="https://www.instagram.com/aman_julius_/" target="_blank" rel="noopener">Instagram</a><a href="https://www.behance.net/juliusaman" target="_blank" rel="noopener">Behance</a><a href="https://www.linkedin.com/in/aman-julius-850676180/" target="_blank" rel="noopener">Linkedin</a></dd></div>
     <div><dt>Location:</dt><dd><span>Bengaluru, Karnataka</span><span class="clock" data-clock>--:--:--</span></dd></div>
     <div><dt>Expertise:</dt><dd><span>Graphic designing</span><span>Brand identity</span><span>Video editing</span></dd></div>
   </dl>
@@ -29,7 +32,13 @@
 <main>
   <section class="sec about wrap" id="about">
     <div class="sh"><h2 class="h rv">About</h2><span class="h rv">S01</span></div>
-    <p class="lead rv">As a digital designer, my work bridges creativity and technology to craft compelling and functional digital experiences. With a deep understanding of user-centric design, I specialize in creating visually stunning websites, interactive platforms, and branding assets that not only captivate but also engage audiences.</p>
+    <div class="ab">
+      <p class="ab__st" id="abSt">I'm Julius, a graphic designer in Bengaluru. I build brands people remember, from the first sketch of a mark to the last frame of motion.</p>
+      <div class="ab__side">
+        <p class="ab__bio rv">I'm from Nagercoil, Tamil Nadu, and studied computer science at VIT. College is where design took over, leading graphic design for ADVITYA, our cultural fest. Today I help cafés, studios and builders show up online, and I like work people stop for, or watch twice.</p>
+        <a class="ab__cv rv" href="assets/Julius-CV.pdf" download>Download CV <i aria-hidden="true">↓</i></a>
+      </div>
+    </div>
     <div class="group">
       <div class="blobwrap" id="rot" aria-hidden="true">
         <svg viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">
@@ -66,7 +75,7 @@
   </section>
 
   <section class="sec wrap" id="works">
-    <div class="sh"><h2 class="h rv">Works</h2><span class="h rv">S03</span></div>
+    <div class="sh"><h2 class="h rv">Works<sup class="cnt" id="worksCnt"></sup></h2><span class="h rv">S03</span></div>
     <div class="wv" role="group" aria-label="Works view"><button type="button" id="vIndex" aria-pressed="true">Index</button><span>/</span><button type="button" id="vGrid" aria-pressed="false">Grid</button></div>
     <ol class="idx" id="idx"></ol>
     <div class="grid" id="grid" hidden></div>
@@ -76,7 +85,7 @@
     <div class="wrap">
       <div class="sh"><h2 class="h rv">Service</h2><span class="h rv">S04</span></div>
       <div class="svc">
-        <p class="rv">I'm a designer and technologist who takes brands from the first sketch to the final screen. I build identity systems and logos, design websites and interfaces in Figma, and bring them to life in code. Alongside that, I plan social media, shoot and edit video, and run campaigns that keep every touchpoint feeling like one brand.</p>
+        <p class="rv">Hand me a blank page or a brand that has drifted. I shape the logo, type and colour into a system, then carry it everywhere you show up: websites and interfaces, posters and emailers, reels and motion. You work with one person the whole way, so nothing gets lost between hand-offs.</p>
         <div class="sp"></div>
         <ul class="ind"><li class="rv">Fashion</li><li class="rv">Architecture</li><li class="rv">Interiors</li><li class="rv">Construction</li><li class="rv">Food</li><li class="rv">Music</li></ul>
       </div>
@@ -119,12 +128,13 @@
 </main>
 
 <footer id="contact">
+  <div class="mq" aria-hidden="true"><div class="mq__t"><span>Brand Identity</span><span>Graphic Design</span><span>Motion Design</span><span>Social Media</span><span>Video Editing</span><span>Brand Identity</span><span>Graphic Design</span><span>Motion Design</span><span>Social Media</span><span>Video Editing</span></div></div>
   <div class="f__in wrap">
-    <p class="f__q">Interested in working with us?</p>
+    <div class="f__row"><p class="f__q">Interested in working with us?</p><a class="totop" href="#top">Back to top <i aria-hidden="true">↑</i></a></div>
     <button class="mail" id="mail" type="button" aria-haspopup="dialog" aria-label="Contact Julius, aman.7.julius@gmail.com"><span class="mail__t">aman.7.julius@gmail.com</span><span class="mail__tag" aria-hidden="true">Let's talk</span></button>
     <div class="logo" id="logo"><h2>Julius</h2></div>
     <dl class="f__grid">
-      <div><dt>Social:</dt><dd><a href="https://www.instagram.com/aman_julius_/" target="_blank" rel="noopener">Instagram</a><a href="https://www.behance.net/gallery/216977593/TEASER-TATVA" target="_blank" rel="noopener">Behance</a><a href="https://www.linkedin.com/in/aman-julius-850676180/" target="_blank" rel="noopener">Linkedin</a></dd></div>
+      <div><dt>Social:</dt><dd><a href="https://www.instagram.com/aman_julius_/" target="_blank" rel="noopener">Instagram</a><a href="https://www.behance.net/juliusaman" target="_blank" rel="noopener">Behance</a><a href="https://www.linkedin.com/in/aman-julius-850676180/" target="_blank" rel="noopener">Linkedin</a></dd></div>
       <div><dt>Location:</dt><dd><span>Bengaluru, Karnataka</span><span class="clock" data-clock>--:--:--</span></dd></div>
         <div><dt>Expertise:</dt><dd><span>Graphic designing</span><span>Brand identity</span><span>Video editing</span></dd></div>
     </dl>
@@ -149,8 +159,9 @@
   <div class="lb__nav wrap"><button type="button" id="lbPrev">Prev</button><span id="lbCap"></span><button type="button" id="lbNext">Next</button></div>
 </div>
 <div class="ct" id="ct" hidden role="dialog" aria-modal="true" aria-labelledby="ctTitle">
+  <div class="ct__show" id="ctShow" aria-hidden="true"><span class="ct__cnt" id="ctCnt"></span><span class="ct__bar" id="ctBar"><i></i></span></div>
   <div class="ct__in wrap" data-lenis-prevent>
-    <div class="ct__top"><div class="ct__soc"><a href="https://www.instagram.com/aman_julius_/" target="_blank" rel="noopener">Instagram</a><a href="https://www.behance.net/gallery/216977593/TEASER-TATVA" target="_blank" rel="noopener">Behance</a><a href="https://www.linkedin.com/in/aman-julius-850676180/" target="_blank" rel="noopener">Linkedin</a></div><button type="button" class="ct__x" id="ctClose">Close</button></div>
+    <div class="ct__top"><div class="ct__soc"><a href="https://www.instagram.com/aman_julius_/" target="_blank" rel="noopener">Instagram</a><a href="https://www.behance.net/juliusaman" target="_blank" rel="noopener">Behance</a><a href="https://www.linkedin.com/in/aman-julius-850676180/" target="_blank" rel="noopener">Linkedin</a></div><button type="button" class="ct__x" id="ctClose">Close</button></div>
     <div class="ct__grid">
       <form class="ct__form" id="ctForm" novalidate onsubmit="return false">
         <p class="ct__lbl">Contact me</p>
@@ -160,9 +171,12 @@
         <a class="ct__send" id="cSend" href="https://mail.google.com/" target="_blank" rel="noopener">Send a message</a>
         <p class="ct__note" id="cNote" aria-live="polite"></p>
       </form>
-      <div class="ct__col"><p class="ct__lbl">Let's talk</p><button type="button" class="ct__link ct__copy" id="cCopy"><span>aman.7.julius@gmail.com</span><em>Copied!</em></button><p class="ct__hint">Click to copy</p></div>
-      <nav class="ct__col" aria-label="Contact panel navigation"><p class="ct__lbl">Navigation</p><a class="ct__link" href="#top" data-go="top">Home</a><a class="ct__link" href="#works" data-go="works">Projects</a><a class="ct__link" href="#service" data-go="service">Service</a></nav>
+      <div class="ct__side">
+        <div class="ct__col"><p class="ct__lbl">Let's talk</p><button type="button" class="ct__link ct__copy" id="cCopy"><span>aman.7.julius@gmail.com</span><em>Copied!</em></button><p class="ct__hint">Click to copy</p></div>
+        <nav class="ct__col" aria-label="Contact panel navigation"><p class="ct__lbl">Navigation</p><a class="ct__link" href="#top" data-go="top">Home</a><a class="ct__link" href="#works" data-go="works">Projects</a><a class="ct__link" href="#service" data-go="service">Service</a></nav>
+      </div>
     </div>
+    <div class="ct__foot"><span>Bengaluru, India</span><span class="clock" data-clock>--:--:--</span><span class="avail"><i aria-hidden="true"></i>Available for work</span></div>
   </div>
 </div>
 <div class="pvw" id="pvw" aria-hidden="true"><div class="pic"></div><span class="pvw__n"></span></div>
@@ -173,7 +187,7 @@
 </div>
 <audio id="backgroundMusic" src="assets/audio/The%20Weeknd%20-%20House%20Of%20Balloons%20(Extended%20Intro).mp3" loop preload="none"></audio>
 <nav class="bar wrap" aria-label="Main">
-  <span>©2026 Julius</span>
+  <div class="bar__l"><span>©2026 Julius</span><span class="avail"><i aria-hidden="true"></i>Available for work</span></div>
   <div class="bar__r">
     <button id="musicToggle" class="music" type="button" aria-pressed="false" aria-label="Play background music">Music off</button>
     <div class="theme" role="group" aria-label="Theme"><button id="tDark" type="button" aria-pressed="false">Dark</button><span>/</span><button id="tLight" type="button" aria-pressed="true">Light</button></div>

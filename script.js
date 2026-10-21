@@ -20,14 +20,20 @@ musicToggle.addEventListener('click',async()=>{
 });
 
 /* ---- content ---- */
-const xp=[['02.2026','Present','Design Lead','Minimalist Institute','Leads a 7 member design team, driving brand consistency, logo development, and visual identity systems. Manages social media strategy, redesigned the company website, produces Instagram video content, and delivered brand events under the Live To Express campaign.'],
+const xp=[['08.2025','Present','Social Media Management','Freelancing','Takes care of the social media and websites for construction, interior design and real estate companies, from content calendars and reels to site updates that keep each brand looking current. Also designs, builds and manages portfolios for photographers, shaping how their work is sequenced and presented online.'],
+['02.2026','04.2026','Design Lead','Minimalist Institute','Leads a 7 member design team, driving brand consistency, logo development, and visual identity systems. Manages social media strategy, redesigned the company website, produces Instagram video content, and delivered brand events under the Live To Express campaign.'],
 ['12.2025','02.2026','Graphic Designer','TSquared Lab','Designed website interfaces, social media creatives, email campaigns, and marketing assets in Figma. Produced podcast and social video content and developed AI powered branding and visual identity assets.'],
 ['01.2025','07.2025','Design Engineer','Translab Technologies Pvt Ltd','Created graphic elements for websites and social platforms using Figma, Photoshop, and Illustrator.'],
 ['03.2023','03.2024','Information Security Software Developer','Sony India Software Center','Managed access control processes and documented system outages for information security workflows.'],
 ['09.2022','03.2023','Cyber Security Intern','IIT Madras (Pravartak)','Completed a 6 month cyber security course with hands on cyber threat management training.']];
 document.getElementById('xp').innerHTML=xp.map(r=>`<li class="rv"><div class="xp__top"><span>${r[0]} / ${r[1]}</span><span>${r[2]}</span><span>${r[3]}</span></div><div class="xp__btm"><p>${r[4]}</p></div></li>`).join('');
+/* touch screens have no hover: the row nearest the middle of the screen darkens instead */
+if(matchMedia('(hover: none)').matches){const rows=[...document.querySelectorAll('#xp li')];let q=0;
+  const upd=()=>{q=0;const mid=innerHeight/2;let best=null,bd=innerHeight*.3;rows.forEach(li=>{const r=li.getBoundingClientRect(),d=Math.abs(r.top+r.height/2-mid);if(d<bd){bd=d;best=li}});rows.forEach(li=>li.classList.toggle('on',li===best))};
+  addEventListener('scroll',()=>{if(!q)q=requestAnimationFrame(upd)},{passive:true});upd()}
 const works=[['Poster design','Since 2022','Posters','Personal series','ig_hob'],['Branding, UI','2024','Brand and UI','Passé, streetwear fashion','passe2'],['Brand identity','2026','Branding','Malekoppa Architects','mk_cards'],['Motion, UI animation','2025','Motion Design','Pujar Constructions','mo_cover'],
 ['Social media','2026','Social Media','beMore Design Studio','bm_cover'],['Motion, explainer','2026','Informational Video','Brain fog and cognitive load','iv_cover'],['Motion graphics','2025','Motion Graphics','Product loops','mg_cover'],['Email design','2025','Emailer','TSquared Eats, meal of the week','em_cover']];
+document.getElementById('worksCnt').textContent='['+String(works.length).padStart(2,'0')+']';
 document.getElementById('grid').innerHTML=works.map((w,i)=>`<a class="card rv" href="#work-${i+1}" data-i="${i}"><div class="card__m"><span>${String(i+1).padStart(2,'0')}</span><span>${w[1]}</span></div><div class="card__i"><div class="pic" data-pic="${w[4]}"></div></div><div class="card__c">${w[2]}<br>${w[3]}</div></a>`).join('');
 document.getElementById('idx').innerHTML=works.map((w,i)=>`<li class="rv"><a class="row" href="#work-${i+1}" data-i="${i}"><span class="row__n">${String(i+1).padStart(2,'0')}</span><span class="row__t">${w[2]}</span><span class="row__m">${w[0]}<br>${w[3]}</span><span class="row__y">${w[1]}</span></a></li>`).join('');
 
@@ -133,8 +139,24 @@ let lenis=null;
 if(!RM&&window.Lenis){lenis=new Lenis({lerp:.09,wheelMultiplier:1});}
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const id=a.getAttribute('href');const t=id==='#top'?0:document.querySelector(id);if(t===null)return;e.preventDefault();lenis?lenis.scrollTo(t,{duration:1.4}):(t===0?scrollTo({top:0,behavior:'smooth'}):t.scrollIntoView({behavior:'smooth'}))}));
 
-/* ---- entrance ---- */
-requestAnimationFrame(()=>requestAnimationFrame(()=>shell.classList.remove('ld')));
+/* ---- entrance, after a short loading counter on the first visit of a session ---- */
+const enter=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>shell.classList.remove('ld')));
+{const pl=document.getElementById('pl');let seen=false;try{seen=sessionStorage.getItem('plSeen')==='1';sessionStorage.setItem('plSeen','1')}catch(_){}
+  if(RM||seen){pl.remove();enter()}
+  else{const plN=document.getElementById('plN'),plBar=document.getElementById('plBar'),t0=performance.now(),D=1400;
+    const step=now=>{const k=Math.min(1,(now-t0)/D),e=1-Math.pow(1-k,3);plN.textContent=String(Math.round(e*100)).padStart(3,'0');plBar.style.transform='scaleX('+e+')';
+      if(k<1)requestAnimationFrame(step);else{pl.classList.add('done');setTimeout(enter,250);setTimeout(()=>pl.remove(),1100)}};
+    requestAnimationFrame(step)}}
+
+/* ---- tab title nudges when the visitor switches away ---- */
+/* ---- about statement: words light up as it scrolls through the viewport ---- */
+{const st=document.getElementById('abSt');st.innerHTML=st.textContent.split(' ').map(w=>'<span class="w">'+w+'</span>').join(' ');
+  const ws=[...st.children];
+  if(RM)ws.forEach(w=>w.classList.add('on'));
+  else{let q=0;const upd=()=>{q=0;const r=st.getBoundingClientRect(),p=(innerHeight*.85-r.top)/(innerHeight*.5),n=Math.round(Math.max(0,Math.min(1,p))*ws.length);ws.forEach((w,i)=>w.classList.toggle('on',i<n))};
+    addEventListener('scroll',()=>{if(!q)q=requestAnimationFrame(upd)},{passive:true});upd()}}
+
+{const T=document.title;document.addEventListener('visibilitychange',()=>{document.title=document.hidden?'Come back soon':T})}
 
 /* ---- appear on scroll (spring up 50px), below fold only ---- */
 if(!RM&&'IntersectionObserver'in window){
@@ -332,8 +354,20 @@ fitMark();addEventListener('resize',fitMark);if(document.fonts)document.fonts.re
 const mail=document.getElementById('mail');
 /* contact panel */
 const EMAIL='aman.7.julius@gmail.com',ct=document.getElementById('ct');let ctBack=null,ctT=0;
-function ctOpen(){ctBack=document.activeElement;clearTimeout(ctT);ct.hidden=false;requestAnimationFrame(()=>requestAnimationFrame(()=>ct.classList.add('open')));if(lenis)lenis.stop();document.documentElement.style.overflow='hidden';setTimeout(()=>document.getElementById('cEmail').focus({preventScroll:true}),RM?0:500)}
-function ctClose(){ct.classList.remove('open');ctT=setTimeout(()=>{ct.hidden=true},RM?0:800);if(lenis)lenis.start();document.documentElement.style.overflow='';if(ctBack&&ctBack.focus)ctBack.focus({preventScroll:true})}
+/* slideshow of every works image, built on first open */
+const ctShow=document.getElementById('ctShow'),ctCnt=document.getElementById('ctCnt'),ctBar=document.getElementById('ctBar');let ctImgs=null,ctI=-1,ctTimer=0;
+const pad2=n=>String(n).padStart(2,'0');
+function ctShowGo(n){if(!ctImgs.length)return;const prev=ctImgs[ctI];ctImgs.forEach(s=>s.classList.remove('out'));
+  if(prev){prev.classList.remove('on');prev.classList.add('out')}
+  ctI=(n+ctImgs.length)%ctImgs.length;ctImgs[ctI].classList.add('on');
+  ctCnt.innerHTML='<b>'+pad2(ctI+1)+'</b><span>/ '+pad2(ctImgs.length)+'</span>';
+  ctBar.classList.remove('run');void ctBar.offsetWidth;if(!RM)ctBar.classList.add('run')}
+function ctShowTick(){clearInterval(ctTimer);if(!RM)ctTimer=setInterval(()=>ctShowGo(ctI+1),4000)}
+function ctShowStart(){if(!ctImgs){ctImgs=Object.values(IMG).map(src=>{const d=document.createElement('div'),im=new Image();d.className='ct__sl';im.src=src;im.alt='';im.decoding='async';d.appendChild(im);ctShow.insertBefore(d,ctCnt);return d})}
+  ctShowGo(ctI+1);ctShowTick()}
+ctShow.addEventListener('click',()=>{ctShowGo(ctI+1);ctShowTick()});
+function ctOpen(){ctBack=document.activeElement;clearTimeout(ctT);ct.hidden=false;ctShowStart();requestAnimationFrame(()=>requestAnimationFrame(()=>ct.classList.add('open')));if(lenis)lenis.stop();document.documentElement.style.overflow='hidden';setTimeout(()=>document.getElementById('cEmail').focus({preventScroll:true}),RM?0:500)}
+function ctClose(){clearInterval(ctTimer);ct.classList.remove('open');ctT=setTimeout(()=>{ct.hidden=true},RM?0:800);if(lenis)lenis.start();document.documentElement.style.overflow='';if(ctBack&&ctBack.focus)ctBack.focus({preventScroll:true})}
 mail.addEventListener('click',ctOpen);
 document.getElementById('ctClose').onclick=ctClose;
 addEventListener('keydown',e=>{if(!ct.hidden&&e.key==='Escape'){e.stopImmediatePropagation();ctClose()}},true);
