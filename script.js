@@ -248,24 +248,36 @@ function pvFill(i){
   $('pvMoreName').textContent=works[(i+1)%works.length][2];
   pvScroll.scrollTop=0;
 }
-function pvOpen(i,trigger){
+function pvOpen(i,trigger,fromHistory=false){
+  if(!fromHistory)history.pushState({...history.state,portfolioProject:i},'', '#work-'+(i+1));
   clearTimeout(pvTimer);pvBack=trigger||document.activeElement;pvFill(i);pv.hidden=false;
   requestAnimationFrame(()=>requestAnimationFrame(()=>pv.classList.add('open')));
   if(lenis)lenis.stop();document.documentElement.style.overflow='hidden';
   $('pvClose').focus({preventScroll:true});
 }
-function pvClose(){
+function pvClose(fromHistory=false){
+  if(fromHistory!==true&&Number.isInteger(history.state?.portfolioProject)){history.back();return}
   pv.classList.remove('open');pvFull.querySelectorAll('video').forEach(v=>v.pause());pvTimer=setTimeout(()=>{pv.hidden=true},RM?0:900);
   if(lenis)lenis.start();document.documentElement.style.overflow='';
   if(pvBack&&pvBack.focus)pvBack.focus({preventScroll:true});
 }
-function pvGo(dir){const i=(pvCur+dir+works.length)%works.length;pv.classList.add('swap');setTimeout(()=>{pvFill(i);pv.classList.remove('swap')},RM?0:350)}
+function pvGo(dir){const i=(pvCur+dir+works.length)%works.length;history.replaceState({...history.state,portfolioProject:i},'', '#work-'+(i+1));pv.classList.add('swap');setTimeout(()=>{pvFill(i);pv.classList.remove('swap')},RM?0:350)}
 document.querySelectorAll('.card,.row').forEach(c=>c.addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();pvwHide();pvOpen(+c.dataset.i,c)}));
 /* works view toggle */
 const vI=$('vIndex'),vG=$('vGrid'),idxEl=$('idx'),gridEl=$('grid');
 function setView(v){idxEl.hidden=v!=='index';gridEl.hidden=v!=='grid';vI.setAttribute('aria-pressed',v==='index');vG.setAttribute('aria-pressed',v==='grid');try{localStorage.setItem('jg-view',v)}catch(_){}}
 vI.onclick=()=>setView('index');vG.onclick=()=>setView('grid');
 try{const sv=localStorage.getItem('jg-view');if(sv)setView(sv)}catch(_){}
+/* On touch screens, highlight the work nearest the viewport centre. */
+if(matchMedia('(hover:none), (max-width:810px)').matches){
+  const items=[...document.querySelectorAll('#idx .row,#grid .card')];let pending=0;
+  const update=()=>{pending=0;let active=null,distance=innerHeight*.3;
+    items.forEach(item=>{if(!item.getClientRects().length)return;const r=item.getBoundingClientRect(),d=Math.abs(r.top+r.height/2-innerHeight/2);if(d<distance){distance=d;active=item}});
+    items.forEach(item=>item.classList.toggle('on',item===active));};
+  const schedule=()=>{if(!pending)pending=requestAnimationFrame(update)};
+  addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule);
+  vI.addEventListener('click',schedule);vG.addEventListener('click',schedule);update();
+}
 /* index hover preview following the cursor */
 const pvw=$('pvw'),pvwPic=pvw.querySelector('.pic'),pvwN=pvw.querySelector('.pvw__n');
 let px=innerWidth/2,py=innerHeight/2,qx=px,qy=py,pvwOn=false,lastX=px;
@@ -279,13 +291,20 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches){
 }
 $('pvClose').onclick=pvClose;$('pvPrev').onclick=()=>pvGo(-1);$('pvNext').onclick=()=>pvGo(1);$('pvMore').onclick=()=>pvGo(1);
 addEventListener('keydown',e=>{if(pv.hidden)return;if(e.key==='Escape')pvClose();else if(e.key==='ArrowRight')pvGo(1);else if(e.key==='ArrowLeft')pvGo(-1)});
-{const m=location.hash.match(/^#work-(\d+)$/);if(m&&+m[1]>=1&&+m[1]<=works.length)pvOpen(+m[1]-1)}
+{const m=location.hash.match(/^#work-(\d+)$/);if(m&&+m[1]>=1&&+m[1]<=works.length){history.replaceState(null,'',location.pathname+location.search+'#works');pvOpen(+m[1]-1)}}
+addEventListener('popstate',()=>{
+  if(!history.state?.portfolioImage&&!lb.hidden)lbClose(true);
+  const i=history.state?.portfolioProject;
+  if(Number.isInteger(i)&&i>=0&&i<works.length){if(pv.hidden||!pv.classList.contains('open'))pvOpen(i,null,true);else if(pvCur!==i)pvFill(i)}
+  else if(!pv.hidden)pvClose(true);
+  if(history.state?.portfolioImage){const img=pvFull.querySelectorAll('img:not(.mail-img)')[history.state.portfolioImage-1];if(img)lbOpen(img,true)}
+});
 
 /* ---- lightbox for project images ---- */
 const lb=$('lb'),lbImg=$('lbImg');let lbList=[],lbI=0,lbBack=null;
 function lbShow(i){lbI=(i+lbList.length)%lbList.length;const im=lbList[lbI];lbImg.src=im.src;lbImg.alt=im.alt;$('lbCap').textContent=im.dataset.cap||'';$('lbIdx').textContent=pad(lbI+1)+' / '+pad(lbList.length);const one=lbList.length<2;$('lbPrev').hidden=one;$('lbNext').hidden=one}
-function lbOpen(img){lbList=[...pvFull.querySelectorAll('img:not(.mail-img)')];lbBack=img;lb.hidden=false;lbShow(lbList.indexOf(img));requestAnimationFrame(()=>lb.classList.add('open'));$('lbClose').focus({preventScroll:true})}
-function lbClose(){lb.classList.remove('open');setTimeout(()=>{lb.hidden=true},RM?0:350);if(lbBack&&lbBack.focus)lbBack.focus({preventScroll:true})}
+function lbOpen(img,fromHistory=false){lbList=[...pvFull.querySelectorAll('img:not(.mail-img)')];if(!fromHistory)history.pushState({...history.state,portfolioImage:lbList.indexOf(img)+1},'');lbBack=img;lb.hidden=false;lbShow(lbList.indexOf(img));requestAnimationFrame(()=>lb.classList.add('open'));$('lbClose').focus({preventScroll:true})}
+function lbClose(fromHistory=false){if(fromHistory!==true&&history.state?.portfolioImage){history.back();return}lb.classList.remove('open');setTimeout(()=>{lb.hidden=true},RM?0:350);if(lbBack&&lbBack.focus)lbBack.focus({preventScroll:true})}
 function lbGo(d){lb.classList.add('swap');setTimeout(()=>{lbShow(lbI+d);lb.classList.remove('swap')},RM?0:180)}
 pvFull.addEventListener('click',e=>{const im=e.target.closest('img:not(.mail-img)');if(im)lbOpen(im)});
 $('lbClose').onclick=lbClose;$('lbPrev').onclick=()=>lbGo(-1);$('lbNext').onclick=()=>lbGo(1);

@@ -335,6 +335,14 @@ footer{background:var(--ink);color:var(--paper);height:1103px;position:relative;
 .pvw .pic{position:absolute;inset:13%;background:center/contain no-repeat;filter:drop-shadow(0 18px 22px rgba(0,0,0,.3))}
 .pvw__n{position:absolute;left:10px;top:8px;font-size:12px;color:var(--accent);font-variant-numeric:tabular-nums}
 @media (hover:none),(max-width:810px){.pvw{display:none}}
+@media (hover:none),(max-width:810px){
+  .idx .row,.idx:hover .row{color:var(--faint)}
+  .idx .row.on{color:var(--fg)}
+  .row.on::after{transform:scaleX(1)}
+  .row.on .row__m{color:inherit}
+  .card .card__c,.card .card__c::first-line,.card .card__m{color:var(--faint);transition:color .45s var(--out)}
+  .card.on .card__c,.card.on .card__c::first-line,.card.on .card__m{color:var(--fg)}
+}
 @media (max-width:810px){
   .row{grid-template-columns:30px minmax(0,1fr) auto;row-gap:8px;padding:16px 0}
   .row__n{grid-column:1;grid-row:1}.row__t{grid-column:2;grid-row:1}.row__y{grid-column:3;grid-row:1;align-self:start}
