@@ -272,7 +272,9 @@ try{const sv=localStorage.getItem('jg-view');if(sv)setView(sv)}catch(_){}
 if(matchMedia('(hover:none), (max-width:810px)').matches){
   const items=[...document.querySelectorAll('#idx .row,#grid .card')];let pending=0;
   const update=()=>{pending=0;let active=null,distance=innerHeight*.3;
-    items.forEach(item=>{if(!item.getClientRects().length)return;const r=item.getBoundingClientRect(),d=Math.abs(r.top+r.height/2-innerHeight/2);if(d<distance){distance=d;active=item}});
+    items.forEach(item=>{if(!item.getClientRects().length)return;const r=item.getBoundingClientRect(),d=Math.abs(r.top+r.height/2-innerHeight/2);if(d<distance){distance=d;active=item}
+      /* index rows drift right as they near the centre, up to 24px */
+      if(!RM&&item.classList.contains('row'))item.style.setProperty('--sh',(Math.max(0,1-d/(innerHeight*.45))*24).toFixed(1)+'px')});
     items.forEach(item=>item.classList.toggle('on',item===active));};
   const schedule=()=>{if(!pending)pending=requestAnimationFrame(update)};
   addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule);

@@ -338,6 +338,7 @@ footer{background:var(--ink);color:var(--paper);height:1103px;position:relative;
 @media (hover:none),(max-width:810px){
   .idx .row,.idx:hover .row{color:var(--faint)}
   .idx .row.on{color:var(--fg)}
+  .idx .row__t,.idx .row__m{transform:translateX(var(--sh,0px));transition:transform .6s var(--out)}
   .row.on::after{transform:scaleX(1)}
   .row.on .row__m{color:inherit}
   .card .card__c,.card .card__c::first-line,.card .card__m{color:var(--faint);transition:color .45s var(--out)}
