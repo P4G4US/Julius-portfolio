@@ -268,16 +268,20 @@ const vI=$('vIndex'),vG=$('vGrid'),idxEl=$('idx'),gridEl=$('grid');
 function setView(v){idxEl.hidden=v!=='index';gridEl.hidden=v!=='grid';vI.setAttribute('aria-pressed',v==='index');vG.setAttribute('aria-pressed',v==='grid');try{localStorage.setItem('jg-view',v)}catch(_){}}
 vI.onclick=()=>setView('index');vG.onclick=()=>setView('grid');
 try{const sv=localStorage.getItem('jg-view');if(sv)setView(sv)}catch(_){}
-/* On touch screens, highlight the work nearest the viewport centre. */
-if(matchMedia('(hover:none), (max-width:810px)').matches){
-  const items=[...document.querySelectorAll('#idx .row,#grid .card')];let pending=0;
-  const update=()=>{pending=0;let active=null,distance=innerHeight*.3;
+/* On touch screens, highlight the work nearest the viewport centre. Re-checked live, so resizing or a device toolbar switch works too. */
+{const mq=matchMedia('(hover:none), (max-width:810px)');
+  const items=[...document.querySelectorAll('#idx .row,#grid .card')];let pending=0,cur=null;
+  const update=()=>{pending=0;
+    if(!mq.matches){items.forEach(item=>{item.classList.remove('on');item.style.removeProperty('--sh')});return}
+    let active=null,distance=innerHeight*.3;
     items.forEach(item=>{if(!item.getClientRects().length)return;const r=item.getBoundingClientRect(),d=Math.abs(r.top+r.height/2-innerHeight/2);if(d<distance){distance=d;active=item}
-      /* index rows drift right as they near the centre, up to 24px */
-      if(!RM&&item.classList.contains('row'))item.style.setProperty('--sh',(Math.max(0,1-d/(innerHeight*.45))*24).toFixed(1)+'px')});
-    items.forEach(item=>item.classList.toggle('on',item===active));};
+      /* index rows drift right as they near the centre, up to 48px */
+      if(!RM&&item.classList.contains('row'))item.style.setProperty('--sh',(Math.max(0,1-d/(innerHeight*.45))*48).toFixed(1)+'px')});
+    /* keep the current row until another is clearly closer, so focus does not flicker between neighbours */
+    if(cur&&active&&cur!==active&&cur.getClientRects().length){const r=cur.getBoundingClientRect();if(Math.abs(r.top+r.height/2-innerHeight/2)-distance<60)active=cur}
+    cur=active;items.forEach(item=>item.classList.toggle('on',item===active));};
   const schedule=()=>{if(!pending)pending=requestAnimationFrame(update)};
-  addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule);
+  addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule);mq.addEventListener('change',schedule);
   vI.addEventListener('click',schedule);vG.addEventListener('click',schedule);update();
 }
 /* index hover preview following the cursor */
