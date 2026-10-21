@@ -78,7 +78,7 @@ p{margin:0}
 .win:nth-child(1){top:0}.win:nth-child(2){top:50%}
 .win .pic{position:absolute;left:-50%;width:200%;aspect-ratio:1;background-size:cover;background-position:50% 30%;will-change:transform}
 .win:nth-child(1) .pic{top:0}.win:nth-child(2) .pic{top:-100%}
-.blobwrap{width:min(84vw,1176px);aspect-ratio:1;margin:0 auto;max-width:100%;will-change:transform}
+.blobwrap{width:min(72vw,1000px);aspect-ratio:1;margin:0 auto;max-width:100%;will-change:transform}
 .blobwrap svg{display:block;width:100%;height:100%}
 .stats{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:flex-end;pointer-events:none}
 .stat{display:grid;gap:10px;text-transform:uppercase}
